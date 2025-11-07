@@ -1,0 +1,40 @@
+<div class="bg-gray-100 min-h-screen py-12">
+  <div class="max-w-lg mx-auto bg-white rounded-xl shadow-lg p-8">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
+      ☕ จองโต๊ะคาเฟ่
+    </h2>
+
+    <div class="mb-6">
+      <label
+        for="nameInput"
+        class="block text-sm font-medium text-gray-700 mb-2"
+      >
+        ชื่อของคุณ
+      </label>
+      <input
+        [(ngModel)]="name"
+        id="nameInput"
+        placeholder="กรอกชื่อของคุณที่นี่"
+        class="border-gray-300 border p-3 w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+      />
+    </div>
+
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">เลือกโต๊ะที่ว่าง</h3>
+
+    <div class="space-y-4">
+      <div
+        *ngFor="let t of tables"
+        class="border border-gray-200 p-4 rounded-lg flex justify-between items-center shadow-sm"
+      >
+        <span class="text-gray-900 font-medium">{{ t.name }}</span>
+
+        <button
+          (click)="bookTable(t.id)"
+          class="px-4 py-2 rounded-md font-semibold text-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200"
+        >
+          {{ "จอง" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

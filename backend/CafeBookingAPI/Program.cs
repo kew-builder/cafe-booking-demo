@@ -1,0 +1,36 @@
+using CafeBookingAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// อ่าน connection string จาก environment ปัจจุบัน
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var provider = builder.Configuration["DatabaseProvider"];
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    if (provider == "PostgreSQL")
+        options.UseNpgsql(connectionString);
+    else if (provider == "SqlServer")
+        options.UseSqlServer(connectionString);
+    else
+        throw new Exception("Unknown database provider. Check DatabaseProvider in appsettings.json");
+});
+
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+if (builder.Environment.IsDevelopment() || app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
