@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npx ng build --configuration production",
+  "outputDirectory": "dist/cafe-booking-frontend",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
