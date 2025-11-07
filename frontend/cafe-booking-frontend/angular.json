@@ -31,7 +31,8 @@
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "outputPath": "dist/cafe-booking-frontend"
           },
           "configurations": {
             "production": {
