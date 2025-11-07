@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://pure-spirit-production.up.railway.app/api'
+  apiUrl: process.env['NG_APP_API_URL']
+
 };
