@@ -3,33 +3,28 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// อ่าน connection string จาก environment ปัจจุบัน
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var provider = builder.Configuration["DatabaseProvider"];
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    if (provider == "PostgreSQL")
+        options.UseNpgsql(connectionString);
+    else if (provider == "SqlServer")
+        options.UseSqlServer(connectionString);
+    else
+        throw new Exception("Unknown database provider. Check DatabaseProvider in appsettings.json");
+});
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// เชื่อมต่อ Database
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-// policy
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:4200")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
-});
-
 var app = builder.Build();
-app.UseCors(MyAllowSpecificOrigins);
 
-if (app.Environment.IsDevelopment())
+if (builder.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
