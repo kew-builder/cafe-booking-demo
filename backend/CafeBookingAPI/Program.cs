@@ -40,6 +40,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseCors(MyAllowSpecificOrigins);
 
 if (builder.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
