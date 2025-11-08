@@ -17,6 +17,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         throw new Exception("Unknown database provider. Check DatabaseProvider in appsettings.json");
 });
 
+// CORS setup
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins(
+                "https://cafe-booking-demo.vercel.app", 
+                "http://localhost:4200"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
