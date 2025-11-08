@@ -3,17 +3,8 @@
   "outputDirectory": "dist/cafe-booking-frontend/browser",
   "framework": "angular",
   "routes": [
-    {
-      "src": "/(.*)\\.(js|css|ico|png|jpg|jpeg|svg|webp|txt|json|wasm|woff2?)",
-      "dest": "/$1"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/(.*)\\.(js|css|ico|png|jpg|jpeg|svg|webp|txt|json|wasm|woff2?)", "dest": "/$1" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
