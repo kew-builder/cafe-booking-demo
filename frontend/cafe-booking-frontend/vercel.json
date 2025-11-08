@@ -1,6 +1,6 @@
 {
   "buildCommand": "npx ng build --configuration production",
-  "outputDirectory": "dist/cafe-booking-frontend",
+  "outputDirectory": "dist/cafe-booking-frontend/browser",
   "routes": [
     {
       "src": "/(.*)",

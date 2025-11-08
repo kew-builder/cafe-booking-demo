@@ -32,7 +32,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "outputPath": "dist/cafe-booking-frontend"
+            "outputPath": "dist/cafe-booking-frontend/broeser"
           },
           "configurations": {
             "production": {
