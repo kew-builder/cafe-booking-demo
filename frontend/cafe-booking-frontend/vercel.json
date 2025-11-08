@@ -3,6 +3,15 @@
   "outputDirectory": "dist/cafe-booking-frontend/browser",
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "headers": { "Cache-Control": "public, max-age=31536000, immutable" },
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)\\.(js|css|ico|png|jpg|jpeg|svg|webp|txt|json)",
+      "dest": "/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
